@@ -7,7 +7,8 @@ class Employee < ActiveRecord::Base
 
   validates :pancard, :bank_ifsc_code, :bank_name, :bank_branch_name, :bank_account_number, presence: true
 
-  validates :pancard, format: { with: /[A-Z]{5}[0-9]{4}[A-Z]/, message: 'Invalid Format' }
+  # https://en.wikipedia.org/wiki/Permanent_account_number#Structure_and_provisions
+  validates :pancard, format: { with: /[A-Z]{3}[ABCFGHLJPT][A-Z][0-9]{4}[A-Z]/, message: 'Invalid Format' }
 
   has_many :pay_slips
 end
